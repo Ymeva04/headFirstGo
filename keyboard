@@ -1,0 +1,22 @@
+package keyboard
+
+import (
+	"bufio"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func GetFloat() (float64, error) {
+	reader := bufio.NewReader(os.Stdin)   // Для чтения ввода с клавиатуры
+	input, err := reader.ReadString('\n') // Сохраняет данные до нажатия кнопки Enter
+	if err != nil {                       // проверка на ошибки
+		return 0, err
+	}
+	input = strings.TrimSpace(input)             // удаляет все пробелы до и после
+	number, err := strconv.ParseFloat(input, 64) //Изменение типа данных в Float64
+	if err != nil {                              //проверка на ошибки
+		return 0, err
+	}
+	return number, nil
+}
